@@ -28,6 +28,16 @@ const createFilm = async (req, res) => {
 }
 
 const deleteFilm = async (req, res) => {
+    try{
+        const filmId = req.body;
+        const newFilm = await Film.query(
+            "DELETE FROM films WHERE film_id = $1 RETURNING *;",
+            [filmId]);
+
+        res.send(newFilm.rows);
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 const updateFilm = async (req, res) => {
