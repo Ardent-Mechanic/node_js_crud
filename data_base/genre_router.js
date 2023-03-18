@@ -4,12 +4,12 @@ const router = new Router()
 
 
 
-router.get('/films', controller.getFilm);
+router.get('/genres', controller.getFilm);
 
-router.post('/films', controller.createFilm);
+router.post('/genres', controller.createFilm);
 
-router.put('/films', controller.updateFilm);
+router.put('/genres', controller.updateFilm);
 
-router.delete('/films', controller.deleteFilm);
+router.delete('/genres', controller.deleteFilm);
 
 module.exports = router;
