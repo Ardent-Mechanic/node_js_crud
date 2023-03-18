@@ -29,12 +29,12 @@ const createFilm = async (req, res) => {
 
 const deleteFilm = async (req, res) => {
     try{
-        const filmId = req.body;
+        const filmId = req.body.film_id;
         const newFilm = await Film.query(
-            "DELETE FROM films WHERE film_id = $1 RETURNING *;",
+            "DELETE FROM films WHERE film_id = $1",
             [filmId]);
 
-        res.send(newFilm.rows);
+        res.send(newFilm.rows[0]);
     } catch (err) {
         console.log(err);
     }
