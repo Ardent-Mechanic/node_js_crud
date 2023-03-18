@@ -5,7 +5,7 @@ const Genre = require('./film_model');
 const getGenre =  async (req, res) => {
     try {
         const all_genres = await Genre.query(
-            "SELECT * FROM genre");
+            "SELECT * FROM genres");
 
         res.send(all_genres.rows);
     } catch (err) {
@@ -15,9 +15,9 @@ const getGenre =  async (req, res) => {
 
 const createGenre = async (req, res) => {
     try {
-        const genreName= req.body.genre_name;
+        const genreName= req.body.genreName;
         const newGenre = await Genre.query(
-            "INSERT INTO films (genre_name) values ($1) RETURNING *",
+            "INSERT INTO genres (genre_name) values ($1) RETURNING *",
             [genreName])
 
         res.send(newGenre.rows[0]);
@@ -28,9 +28,9 @@ const createGenre = async (req, res) => {
 
 const deleteGenre = async (req, res) => {
     try{
-        const genreId = req.body.genre_id;
+        const genreId = req.body.genreId;
         const curGenre = await Genre.query(
-            "DELETE FROM genre WHERE genre_id = $1",
+            "DELETE FROM genres WHERE genre_id = $1",
             [genreId]);
 
         res.send(curGenre.rows[0]);
@@ -40,13 +40,13 @@ const deleteGenre = async (req, res) => {
 }
 
 const updateGenre = async (req, res) => {
-    try{
+    try {
         const {genreId, genreName} = req.body;
         const curGenre = await Genre.query(
-            "UPDATE films SET (genre_name) = ($1) WHERE genre_id = $2 RETURNING *;",
+            "UPDATE genres SET genre_name = $1 WHERE genre_id = $2 RETURNING *;",
             [genreName, genreId]);
 
-        res.send(newFilm.rows[0]);
+        res.send(curGenre.rows[0]);
     } catch (err) {
     console.log(err);
     }
