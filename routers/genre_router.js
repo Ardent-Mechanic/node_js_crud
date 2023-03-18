@@ -1,5 +1,5 @@
 const Router = require('../module/Router');
-const controller = require('./genre_controller');
+const controller = require('../controllers/genre_controller');
 const router = new Router()
 
 

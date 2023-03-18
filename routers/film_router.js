@@ -1,5 +1,5 @@
 const Router = require('../module/Router');
-const controller = require('./film_controller');
+const controller = require('../controllers/film_controller');
 const router = new Router()
 
 
