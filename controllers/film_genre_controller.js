@@ -1,7 +1,7 @@
 "use strict";
 
-const Genre = require('./film_model');
-const Film = require("./film_model");
+const Genre = require('../src/db');
+const Film = require("../src/db");
 
 const getFilmGenre =  async (req, res) => {
     try {
@@ -40,23 +40,9 @@ const deleteFilmGenre = async (req, res) => {
     }
 }
 
-const updateFilmGenre = async (req, res) => {
-    try{
-        const {filmId, genreId} = req.body;
-        const curFilmGenre = await Genre.query(
-            "UPDATE films_genres SET (film_id, genre_id) = ($1) WHERE film_id = $1 AND genre_id = $2 RETURNING *;",
-            [filmId, genreId]);
-
-        res.send(curFilmGenre.rows[0]);
-    } catch (err) {
-    console.log(err);
-    }
-}
-
 module.exports = {
     getFilmGenre,
     createFilmGenre,
     deleteFilmGenre,
-    updateFilmGenre
 }
 

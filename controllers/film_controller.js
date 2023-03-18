@@ -1,6 +1,6 @@
 "use strict";
 
-const Film = require('./film_model');
+const Film = require('../src/db');
 
 const getFilm =  async (req, res) => {
     try {
